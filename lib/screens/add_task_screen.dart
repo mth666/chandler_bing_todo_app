@@ -33,7 +33,9 @@ class AddTaskScreen extends StatelessWidget {
             style: ButtonStyle(
               backgroundColor: WidgetStateProperty.all(Colors.black87),
             ),
-            onPressed: () {},
+            onPressed: () {
+              //add task
+            },
             child: const Text(
               'ADD',
               style: TextStyle(
