@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:chandler_bing_todo_app/custom_widgets/task_list.dart';
 import 'package:chandler_bing_todo_app/screens/add_task_screen.dart';
+import 'package:chandler_bing_todo_app/models/task.dart';
 
-class TaskScreen extends StatelessWidget {
+class TaskScreen extends StatefulWidget {
   const TaskScreen({super.key});
 
+  @override
+  State<TaskScreen> createState() => _TaskScreenState();
+}
+
+List<Task> tasks = [
+  Task(name: '1st Todo'),
+  Task(name: '2nd Todo'),
+  Task(name: '3rd Todo'),
+];
+
+class _TaskScreenState extends State<TaskScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,9 +26,14 @@ class TaskScreen extends StatelessWidget {
         ),
         onPressed: () {
           showModalBottomSheet(
-            context: context,
-            builder: (context) => const AddTaskScreen(),
-          );
+              //Bottom Sheet Page
+              context: context,
+              builder: (context) =>
+                  AddTaskScreen(addTaskCallback: (newTaskTitle) {
+                    setState(() {
+                      tasks.add(Task(name: newTaskTitle));
+                    });
+                  }));
         },
         backgroundColor: Colors.black87,
         child: const Icon(
@@ -81,7 +98,7 @@ class TaskScreen extends StatelessWidget {
                   topRight: Radius.circular(20),
                 ),
               ),
-              child: const TaskList(),
+              child: TaskList(tasks),
             ),
           ),
           Container(
@@ -92,7 +109,7 @@ class TaskScreen extends StatelessWidget {
             child: const Image(
               image: AssetImage('images/friendslogo.png'),
             ),
-          ),
+          ), //Friends Logo Live here
           //White Area holding task and checkboxes
         ],
       ),

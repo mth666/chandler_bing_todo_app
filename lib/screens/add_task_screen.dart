@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  const AddTaskScreen({super.key});
-
+  const AddTaskScreen({super.key, required this.addTaskCallback});
   get onPressed => null;
-
   get child => null;
+  final Function addTaskCallback;
 
   @override
   Widget build(BuildContext context) {
+    String newTaskTitle = '';
     return Container(
       padding: const EdgeInsets.only(top: 30, left: 30, right: 30),
       child: Column(
@@ -22,19 +22,23 @@ class AddTaskScreen extends StatelessWidget {
                 fontWeight: FontWeight.w500,
                 color: Colors.lightBlueAccent),
           ),
-          const TextField(
+          TextField(
             autofocus: true,
             textAlign: TextAlign.center,
+            onChanged: (newText) {
+              newTaskTitle = newText;
+            },
           ),
           const SizedBox(
             height: 20,
           ),
           TextButton(
+            //Button
             style: ButtonStyle(
               backgroundColor: WidgetStateProperty.all(Colors.black87),
             ),
             onPressed: () {
-              //add task
+              addTaskCallback(newTaskTitle);
             },
             child: const Text(
               'ADD',
@@ -65,10 +69,3 @@ class AddTaskScreen extends StatelessWidget {
     );
   }
 }
-// const Image(
-// //alignment: Alignment.bottomCenter,
-//
-// height: 190,
-// width: 120,
-// image: AssetImage('images/chandlerbing.png'),
-// )

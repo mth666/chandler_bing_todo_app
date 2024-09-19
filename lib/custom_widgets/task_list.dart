@@ -1,38 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:chandler_bing_todo_app/custom_widgets/task_tile.dart';
 import 'package:chandler_bing_todo_app/models/task.dart';
+import 'package:chandler_bing_todo_app/screens/tasks_screen.dart';
 
 class TaskList extends StatefulWidget {
-  const TaskList({
-    super.key,
-  });
-
+  final List<Task> tasks;
+  const TaskList(this.tasks, {super.key});
   @override
   State<TaskList> createState() => _TaskListState();
 }
 
 class _TaskListState extends State<TaskList> {
-  List<Task> tasks = [
-    Task(name: '1st Todo'),
-    Task(name: '2nd Todo'),
-    Task(name: '3rd Todo'),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemBuilder: (context, int index) {
         return TaskTile(
-          isChecked: tasks[index].isDone,
-          taskTitle: tasks[index].name,
+          isChecked: widget.tasks[index].isDone,
+          taskTitle: widget.tasks[index].name,
           checkboxCallback: (bool checkBoxState) {
             setState(() {
-              tasks[index].toggleDone();
+              widget.tasks[index].toggleDone();
             });
           },
         );
       },
-      itemCount: tasks.length,
+      itemCount: widget.tasks.length,
     );
   }
 
