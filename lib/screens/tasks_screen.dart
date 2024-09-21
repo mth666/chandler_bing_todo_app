@@ -1,25 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:chandler_bing_todo_app/custom_widgets/task_list.dart';
 import 'package:chandler_bing_todo_app/screens/add_task_screen.dart';
-import 'package:chandler_bing_todo_app/models/task.dart';
+import 'package:chandler_bing_todo_app/models/task_data.dart';
+import 'package:provider/provider.dart';
 
-class TaskScreen extends StatefulWidget {
+class TaskScreen extends StatelessWidget {
   const TaskScreen({super.key});
 
   @override
-  State<TaskScreen> createState() => _TaskScreenState();
-}
-
-List<Task> tasks = [
-  Task(name: '1st Todo'),
-  Task(name: '2nd Todo'),
-  Task(name: '3rd Todo'),
-];
-
-class _TaskScreenState extends State<TaskScreen> {
-  @override
   Widget build(BuildContext context) {
-    int taskCount = tasks.length;
+//    int taskCount = tasks.length;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         shape: RoundedRectangleBorder(
@@ -31,9 +21,9 @@ class _TaskScreenState extends State<TaskScreen> {
               context: context,
               builder: (context) =>
                   AddTaskScreen(addTaskCallback: (newTaskTitle) {
-                    setState(() {
-                      tasks.add(Task(name: newTaskTitle));
-                    });
+                    // setState(() {
+                    //   tasks.add(Task(name: newTaskTitle));
+                    // });
                     Navigator.pop(context);
                   }));
         },
@@ -73,7 +63,8 @@ class _TaskScreenState extends State<TaskScreen> {
                       letterSpacing: 2),
                 ),
                 Text(
-                  'Current Tasks: $taskCount',
+                  // 'Current Tasks: $taskCount',
+                  'Current Tasks: ${Provider.of<TaskData>(context).tasks.length}',
                   style: const TextStyle(
                       color: Colors.white,
                       fontSize: 18,
@@ -100,7 +91,7 @@ class _TaskScreenState extends State<TaskScreen> {
                   topRight: Radius.circular(20),
                 ),
               ),
-              child: TaskList(tasks),
+              child: TaskList(),
             ),
           ),
           Container(
