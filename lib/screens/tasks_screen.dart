@@ -19,6 +19,7 @@ List<Task> tasks = [
 class _TaskScreenState extends State<TaskScreen> {
   @override
   Widget build(BuildContext context) {
+    int taskCount = tasks.length;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         shape: RoundedRectangleBorder(
@@ -33,6 +34,7 @@ class _TaskScreenState extends State<TaskScreen> {
                     setState(() {
                       tasks.add(Task(name: newTaskTitle));
                     });
+                    Navigator.pop(context);
                   }));
         },
         backgroundColor: Colors.black87,
@@ -50,10 +52,10 @@ class _TaskScreenState extends State<TaskScreen> {
             color: Colors.lightBlue,
             padding:
                 const EdgeInsets.only(top: 60, left: 30, right: 30, bottom: 30),
-            child: const Column(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CircleAvatar(
+                const CircleAvatar(
                   child: Icon(
                     // List Icon top of the App
                     Icons.list,
@@ -61,7 +63,7 @@ class _TaskScreenState extends State<TaskScreen> {
                     size: 30,
                   ),
                 ),
-                Text(
+                const Text(
                   'Chandler Bing Todo App',
                   style: TextStyle(
                       color: Colors.white,
@@ -71,8 +73,8 @@ class _TaskScreenState extends State<TaskScreen> {
                       letterSpacing: 2),
                 ),
                 Text(
-                  'Current Tasks: 10',
-                  style: TextStyle(
+                  'Current Tasks: $taskCount',
+                  style: const TextStyle(
                       color: Colors.white,
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
