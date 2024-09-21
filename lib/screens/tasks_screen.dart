@@ -17,15 +17,18 @@ class TaskScreen extends StatelessWidget {
         ),
         onPressed: () {
           showModalBottomSheet(
-              //Bottom Sheet Page
-              context: context,
-              builder: (context) =>
-                  AddTaskScreen(addTaskCallback: (newTaskTitle) {
-                    // setState(() {
-                    //   tasks.add(Task(name: newTaskTitle));
-                    // });
-                    Navigator.pop(context);
-                  }));
+            //Bottom Sheet Page
+            context: context,
+            builder: (context) => AddTaskScreen(
+
+                // addTaskCallback: (newTaskTitle) {
+                //   Provider.of<TaskData>(context, listen: false)
+                //       .addTask(newTaskTitle);
+                //   Navigator.pop(context);
+                // },
+                //
+                ),
+          );
         },
         backgroundColor: Colors.black87,
         child: const Icon(
@@ -64,7 +67,7 @@ class TaskScreen extends StatelessWidget {
                 ),
                 Text(
                   // 'Current Tasks: $taskCount',
-                  'Current Tasks: ${Provider.of<TaskData>(context).tasks.length}',
+                  'Current Tasks: ${Provider.of<TaskData>(context).taskCount}',
                   style: const TextStyle(
                       color: Colors.white,
                       fontSize: 18,

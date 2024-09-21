@@ -1,10 +1,14 @@
+import 'package:chandler_bing_todo_app/models/task_data.dart';
 import 'package:flutter/material.dart';
+import 'package:chandler_bing_todo_app/models/task.dart';
+import 'package:provider/provider.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  const AddTaskScreen({super.key, required this.addTaskCallback});
-  get onPressed => null;
-  get child => null;
-  final Function addTaskCallback;
+  const AddTaskScreen({
+    super.key,
+  });
+  // get onPressed => null;
+  // get child => null;
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +27,11 @@ class AddTaskScreen extends StatelessWidget {
                 color: Colors.lightBlueAccent),
           ),
           TextField(
+            // Text Filed for user Input
             autofocus: true,
             textAlign: TextAlign.center,
             onChanged: (newText) {
+              //user input texts
               newTaskTitle = newText;
             },
           ),
@@ -33,12 +39,14 @@ class AddTaskScreen extends StatelessWidget {
             height: 20,
           ),
           TextButton(
-            //Button
+            //Button to add new tasks
             style: ButtonStyle(
               backgroundColor: WidgetStateProperty.all(Colors.black87),
             ),
             onPressed: () {
-              addTaskCallback(newTaskTitle);
+              Provider.of<TaskData>(context).addTask(newTaskTitle);
+              Navigator.pop(context);
+              //   Navigator.pop(context);
             },
             child: const Text(
               'ADD',
