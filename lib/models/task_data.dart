@@ -4,9 +4,9 @@ import 'dart:collection';
 
 class TaskData extends ChangeNotifier {
   final List<Task> _tasks = [
-    Task(name: '1st Todo'),
-    Task(name: '2nd Todo'),
-    Task(name: '3rd Todo'),
+    Task(name: 'Buy BBQ'),
+    Task(name: 'Buy some drinks'),
+    Task(name: 'Buy some snacks?'),
   ];
   void updateTask(Task task) {
     task.isDone = !task.isDone;
