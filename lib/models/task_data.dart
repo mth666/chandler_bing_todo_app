@@ -8,6 +8,10 @@ class TaskData extends ChangeNotifier {
     Task(name: '2nd Todo'),
     Task(name: '3rd Todo'),
   ];
+  void updateTask(Task task) {
+    task.isDone = !task.isDone;
+    notifyListeners();
+  }
 
   UnmodifiableListView<Task> get tasks {
     return UnmodifiableListView(_tasks);
