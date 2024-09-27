@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:chandler_bing_todo_app/custom_widgets/task_tile.dart';
 import 'package:provider/provider.dart';
 import 'package:chandler_bing_todo_app/models/task_data.dart';
-//import 'package:chandler_bing_todo_app/models/task.dart';
 
 class TaskList extends StatelessWidget {
   const TaskList({super.key});
@@ -23,9 +22,13 @@ class TaskList extends StatelessWidget {
               taskTitle: task.name,
               checkboxCallback: (bool checkBoxState) {
                 taskData.updateTask(task);
+
                 // setState(() {
                 //   Provider.of<TaskData>(context).tasks[index].toggleDone();
                 // });
+              },
+              longPressCallback: () {
+                taskData.deleteTask(task);
               },
             );
           },

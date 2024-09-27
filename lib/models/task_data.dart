@@ -21,6 +21,11 @@ class TaskData extends ChangeNotifier {
     return _tasks.length;
   }
 
+  void deleteTask(Task task) {
+    _tasks.remove(task);
+    notifyListeners();
+  }
+
   //Add Task Method
   void addTask(String newTaskTitle) {
     final task = Task(name: newTaskTitle);
